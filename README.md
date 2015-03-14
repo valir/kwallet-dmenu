@@ -36,7 +36,7 @@ Do not forget to reload the WM's configuration to get it working.
 
 ## Usage
 KDE Wallet is quite flexible and each user organizes passwords as he likes.
-This script and kwallet-query tool try not to interfere to much. A typical
+This script and kwallet-query tool try not to interfere too much. A typical
 usage might be like this:
 
 * For each website or other secured access you might have, use KWallet Manager
@@ -48,7 +48,7 @@ usage might be like this:
 The script will call kwallet-query two times:
 
 * First time, it'll query all entries under the Passwords/Passwords folder,
-  and fee dmenu with them ; you'll see dmenu displaying them and you'll be
+  and feed dmenu with them ; you'll see dmenu displaying them and you'll be
   able to navigate and select one entry
 * The second time kwallet-query is asked to get the lines of text from the
   entry you selected during the previous step. It'll split the lines of text
