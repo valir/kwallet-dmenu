@@ -1,0 +1,8 @@
+#!/bin/bash
+WALLET=gpgwallet
+ENTRY=$(kwallet-query -l $WALLET 2>/dev/null | dmenu)
+[ x"$ENTRY" == "x"  ] && exit
+PASSWORD=$(kwallet-query -r $ENTRY $WALLET | dmenu)
+# remove trailing newline from the selected password then insert 
+# it into the clipboard
+printf %s $PASSWORD | xclip
