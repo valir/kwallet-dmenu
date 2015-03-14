@@ -1,8 +1,22 @@
 #!/bin/bash
+# This script allows quick query of your main KDE Wallet
+# by leveraging dmenu and kwallet-query tools
+#
+# This file is distributed under the GPL v3 license
+# See https://github.com/valir/kwallet-dmenu for more information
+#
+
+# put here your main KDE wallet name
 WALLET=gpgwallet
+
+# adjust this if you don't use xclip on your system
+CLIPBOARD_COMMAND=xclip
+
+# the following lines do the actual job
 ENTRY=$(kwallet-query -l $WALLET 2>/dev/null | dmenu)
 [ x"$ENTRY" == "x"  ] && exit
-PASSWORD=$(kwallet-query -r $ENTRY $WALLET | dmenu)
+PASSWORD=$(kwallet-query -r $ENTRY $WALLET 2>/dev/null | dmenu)
+[ x"$PASSWORD" == "x" ] && exit
 # remove trailing newline from the selected password then insert 
 # it into the clipboard
-printf %s $PASSWORD | xclip
+printf %s $PASSWORD | $CLIPBOARD_COMMAND
