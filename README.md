@@ -12,7 +12,7 @@ forget it when querying the wallet.
 ## Before installing
 Please ensure you have the kwallet-query tool present on your system and
 accessible on the system $PATH. This tool can be found in KDE playground/utils
-(git repository creation is pending at the time of writing this)
+https://projects.kde.org/projects/playground/utils/kwallet-query
 
 kwallet-query is compatible with the KWallet from the KDE Frameworks
 repositories (KF5). Let me know if you'd like to have it working with the old
