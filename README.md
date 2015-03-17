@@ -45,7 +45,12 @@ usage might be like this:
   folder, such as Maps, Binary data or Unknown
 * In the contents box enter each piece of information in per-line fashion
 
-The script will call kwallet-query two times:
+Configure a shortcut to the script in your window manager. For I3WM you could
+define something like this:
+
+    bindsym $mod+p exec kwallet-dmenu
+
+When invoked, the script will call kwallet-query two times:
 
 * First time, it'll query all entries under the Passwords/Passwords folder,
   and feed dmenu with them ; you'll see dmenu displaying them and you'll be
