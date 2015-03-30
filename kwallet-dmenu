@@ -10,7 +10,7 @@
 WALLET=gpgwallet
 
 # adjust this if you don't use xclip on your system
-CLIPBOARD_COMMAND=xclip
+CLIPBOARD_COMMAND="xclip -selection clipboard"
 
 # the following lines do the actual job
 ENTRY=$(kwallet-query -l $WALLET 2>/dev/null | dmenu)
