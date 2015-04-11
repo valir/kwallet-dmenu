@@ -28,8 +28,10 @@ PW=$(pwgen $PW_LENGTH 1)
 # the new password will be available directly into the clipboard
 echo "$PW" | $CLIPBOARD_COMMAND
 
-NAME=$(zenity --entry --text "Enter password name:")
+NAME=$(zenity --entry --title "kwallet-pwgen" --text "Enter password name:")
+USER_NAME=$(zenity --entry --title "kwallet-pwgen" --text "Enter user name:")
 kwallet-query -w "$NAME" $WALLET <<EOF
+$USER_NAME
 $PW
 EOF
 
