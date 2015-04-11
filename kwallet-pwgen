@@ -1,0 +1,35 @@
+#!/bin/bash
+#
+# This script would allow defining a new password into
+# the wallet. It uses zenity to prompt for the name of
+# the new password.
+#
+# I bound this script like this in i3wm:
+#     bindsym $mod+Shift+p exec kwallet-pwgen
+#
+# When a new website invites me to register, before entering the
+# password field I just press Shift+p to define the new wallet
+# entry for the current account
+#
+# This file is distributed under the GPL v3 license
+# See https://github.com/valir/kwallet-dmenu for more information
+#
+
+# put here your main KDE wallet name
+WALLET=gpgwallet
+
+# adjust this if you don't use xclip on your system
+CLIPBOARD_COMMAND="xclip -selection clipboard"
+
+# adjust password length here
+PW_LENGTH=8
+PW=$(pwgen $PW_LENGTH 1)
+
+# the new password will be available directly into the clipboard
+echo "$PW" | $CLIPBOARD_COMMAND
+
+NAME=$(zenity --entry --text "Enter password name:")
+kwallet-query -w "$NAME" $WALLET <<EOF
+$PW
+EOF
+
