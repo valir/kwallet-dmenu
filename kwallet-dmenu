@@ -2,6 +2,9 @@
 # This script allows quick query of your main KDE Wallet
 # by leveraging dmenu and kwallet-query tools
 #
+# I bound this script like this in i3wm
+#     bindsym $mod+p exec kwallet-dmenu
+#
 # This file is distributed under the GPL v3 license
 # See https://github.com/valir/kwallet-dmenu for more information
 #
