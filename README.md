@@ -1,13 +1,23 @@
 # kwallet-dmenu
-Use kwallet-query and this script to interface KWallet with I3 or other tiling WM via dmenu.
+Use kwallet-query and this script to interface KWallet with I3 or other tiling
+WM via dmenu.
 
-## Purpose of this script
-This script uses kwallet-query tool and dmenu to enable quick querying of your
-main KDE wallet. If you're an I3WM user (or some other tiling WM) then you'll
-want to bind this script to a key and become able to get any of your passwords
-from the KDE wallet in a matter of a few keystrokes. You'll no longer need
-KWalletManager5. Ok, you'll still need it when adding passwords, but you'll
-forget it when querying the wallet.
+## Purpose of these scripts
+This repo contains a couiple of scripts that leverage the kwallet-query tool
+and is mainly intended for the tiling window managers users. For instance I
+used these scripts with i3wm.
+
+The first script uses kwallet-query tool and dmenu to enable quick querying of
+your main KDE wallet. You'll want to bind this script to a key and become able
+to get any of your passwords from the KDE wallet in a matter of a few
+keystrokes. You'll no longer need KWalletManager5. Ok, you'll still need it
+when managing the passwords, but you'll forget it when querying the wallet.
+
+The second script uses zenity to prompt you for the entry name and user name,
+the it calls pwgen to generate a new password for you and finally it calls
+kwallet-query to write these values into a new kwallet entry.  You'll want to
+bind this script to another key and become able to quickly define a new
+password in the clipboard when regsitering a new accound, for instance.
 
 ## Before installing
 Please ensure you have the kwallet-query tool present on your system and
@@ -26,11 +36,13 @@ Modify the WALLET variable to let it hold your actual KDE Wallet name.
 Make the kwallet-dmenu script accessible on the system $PATH. For example:
 
     ln -s <path to kwallet-dmenu> ~/bin/
+    ln -s <path to kwallet-pwgen> ~/bin/
 
 Create a shortcut for it on your system. For example, you can add this to your
 I3 configuration file ~/.config/i3/config :
 
     bindsym $mod+p exec kwallet-dmenu
+    bindsym $mod+Shift+p exec kwallet-pwgen
 
 Do not forget to reload the WM's configuration to get it working.
 
@@ -45,12 +57,14 @@ usage might be like this:
   folder, such as Maps, Binary data or Unknown
 * In the contents box enter each piece of information in per-line fashion
 
-Configure a shortcut to the script in your window manager. For I3WM you could
-define something like this:
+The kwallet-pwgen script will orgnaniser the information exactly like that.
+So, when registering somewhere, you'll be expected to enter user name and
+password. When entering the password field, just press $mod+Shift+p and enter
+the service name, then enter the user name you just defined then press
+Shift+Insert to put the password on the register form. That's it!
 
-    bindsym $mod+p exec kwallet-dmenu
-
-When invoked, the script will call kwallet-query two times:
+Later-on, when visiting the same service, use $mod+p to invoke kwallet-dmenu
+script. This script will call kwallet-query two times:
 
 * First time, it'll query all entries under the Passwords/Passwords folder,
   and feed dmenu with them ; you'll see dmenu displaying them and you'll be
